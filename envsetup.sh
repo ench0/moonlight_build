@@ -41,11 +41,11 @@ EOF
     echo $A
 }
 
-# run a command inside all projects tracked on the vanir remote in the manifest
-function forall_vanir()
+# run a command inside all projects tracked on the moonlight remote in the manifest
+function forall_moonlight()
 {
   cd $ANDROID_BUILD_TOP
-  regex=$(repo forall -c '[ "$REPO_REMOTE" = "vanir" ] && echo -n \|^$REPO_PATH\$' | sed 's/^|//g')
+  regex=$(repo forall -c '[ "$REPO_REMOTE" = "moonlight" ] && echo -n \|^$REPO_PATH\$' | sed 's/^|//g')
   repo forall -r $regex -c "$@"
 }
 function forall_cm()
@@ -1824,19 +1824,19 @@ export BUILD_TINY_ANDROID=
 local MAKECMD=""
 case `uname -s` in
     Darwin)
-        if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
+        if [ ! $(echo $MOONLIGHT_PARALLEL_JOBS | wc -w) -gt 0 ]; then
             local threads=`sysctl hw.ncpu|cut -d" " -f2`
             local load=`expr $threads \* 2`
-            VANIR_PARALLEL_JOBS="-j$load"
+            MOONLIGHT_PARALLEL_JOBS="-j$load"
         fi
-        MAKECMD="`command -pv make` $VANIR_PARALLEL_JOBS"
+        MAKECMD="`command -pv make` $MOONLIGHT_PARALLEL_JOBS"
         ;;
     *)
-        if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
+        if [ ! $(echo $MOONLIGHT_PARALLEL_JOBS | wc -w) -gt 0 ]; then
             local cores=`nproc --all`
-            VANIR_PARALLEL_JOBS="-j$cores"
+            MOONLIGHT_PARALLEL_JOBS="-j$cores"
         fi
-        MAKECMD="schedtool -B -n 1 -e ionice -n 1 `command -pv make` $VANIR_PARALLEL_JOBS"
+        MAKECMD="schedtool -B -n 1 -e ionice -n 1 `command -pv make` $MOONLIGHT_PARALLEL_JOBS"
         ;;
 esac
 export start_time=$(date +"%s")
@@ -1851,10 +1851,10 @@ local secs=$(($tdiff % 60))
 echo
 if [ $retval -eq 0 ] ; then
     echo -n -e "#### make completed successfully "
-    [ ! $VANIR_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "VANIR" "$TARGET_PRODUCT build completed." -i $T/build/buildwin.png -t 10000
+    [ ! $MOONLIGHT_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "MOONLIGHT" "$TARGET_PRODUCT build completed." -i $T/build/buildwin.png -t 10000
 else
     echo -n -e "#### make failed to build some targets "
-    [ ! $VANIR_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "VANIR" "$TARGET_PRODUCT build FAILED." -i $T/build/buildfailed.png -t 10000
+    [ ! $MOONLIGHT_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "MOONLIGHT" "$TARGET_PRODUCT build FAILED." -i $T/build/buildfailed.png -t 10000
 fi
 if [ $hours -gt 0 ] ; then
     printf "(%02g:%02g:%02g (hh:mm:ss))" $hours $mins $secs
@@ -1870,7 +1870,7 @@ return $retval
 }
 
 smash() {
-#to do: add smash $anytarget, smashOTA, smash, smashVANIR
+#to do: add smash $anytarget, smashOTA, smash, smashMOONLIGHT
 DIR=$OUT
 #to do: fix the colors
 	if [ -d  "$DIR" ]; then
@@ -2229,4 +2229,4 @@ if [ `typeset -F | grep _git | wc -l` -eq 0 ]; then
     source $(gettop)/build/git-completion.bash
 fi
 export ANDROID_BUILD_TOP=$(gettop)
-export PATH=$ANDROID_BUILD_TOP/ccache:$PATH:$ANDROID_BUILD_TOP/vendor/vanir/scripts
+export PATH=$ANDROID_BUILD_TOP/ccache:$PATH:$ANDROID_BUILD_TOP/vendor/moonlight/scripts

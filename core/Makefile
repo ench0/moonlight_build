@@ -1543,7 +1543,7 @@ endif
 	@# build them.
 	$(hide) mkdir -p $(zip_root)/META
 	$(hide) $(ACP) $(APKCERTS_FILE) $(zip_root)/META/apkcerts.txt
-	$(ANDROID_BUILD_TOP)/vendor/vanir/tools/earlysquisher $(zip_root)/SYSTEM
+	$(ANDROID_BUILD_TOP)/vendor/moonlight/tools/earlysquisher $(zip_root)/SYSTEM
 	$(hide) if test -e $(tool_extensions)/releasetools.py; then $(ACP) $(tool_extensions)/releasetools.py $(zip_root)/META/; fi
 	$(hide)	echo "$(PRODUCT_OTA_PUBLIC_KEYS)" > $(zip_root)/META/otakeys.txt
 	$(hide) echo "recovery_api_version=$(PRIVATE_RECOVERY_API_VERSION)" > $(zip_root)/META/misc_info.txt
@@ -1627,7 +1627,7 @@ INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name).zip
 export OTA_PACKAGE_PATH :=$(INTERNAL_OTA_PACKAGE_TARGET)
 
 ifeq ($($(strip DHO_VENDOR)),)
-  DHO_VENDOR := vanir
+  DHO_VENDOR := moonlight
 endif
 ifeq ($(strip $(FORCE_PRECOMPILED_DALVIK)), true)
   SQUISHER_ARGS := $(TARGET_BOARD_PLATFORM)
@@ -1689,7 +1689,7 @@ else
 	@echo -e ${CL_YLW}"Running releasetool..."${CL_RST}
 	$(hide) ./vendor/$(DHO_VENDOR)/tools/squisher $(SQUISHER_ARGS)
 endif
-	$(ANDROID_BUILD_TOP)/build/tools/vanir_build_logger.sh $(PRODUCT_OUT)
+	$(ANDROID_BUILD_TOP)/build/tools/moonlight_build_logger.sh $(PRODUCT_OUT)
 
 endif    # recovery_fstab is defined
 endif    # TARGET_NO_KERNEL != true

@@ -28,7 +28,7 @@ From source root:
 . build/envsetup.sh && lunch
 choose the number of the target device
 
-to build vanir spec builds from any directory:
+to build moonlight spec builds from any directory:
 mka bacon
 
 How to to clean your out directory/cache:

@@ -93,13 +93,13 @@ champagne()
     fi
     if [ ! $precompiled ] && [ $haskernelline -eq 0 ]; then
         #if bottlservice is prevented (which is useful to maintain versioning consistency while building nightlies, then we should exit non-zero here
-        if [ $VANIR_BOTTLESERVICE_DISABLE ]; then
+        if [ $MOONLIGHT_BOTTLESERVICE_DISABLE ]; then
             echo "WARNING: SKIPPING BOTTLESERVICE FOR $device, WHICH NEEDS A F&^%ING BOTTLE SERVED TO IT."
             return 1
         fi
         #add kernel to the file
         echo " "
-        echo " VANIR BOTTLESERVICE. YOU KNOW HOW WE DO."
+        echo " MOONLIGHT BOTTLESERVICE. YOU KNOW HOW WE DO."
         echo " "
         echo " Adding a line for $device's kernel to .repo/local_manifests/bottleservice.xml,
         and adding another bottle of Cristal to your tab."
@@ -123,7 +123,7 @@ champagne()
                 cat .repo/local_manifests/bottleservice.xml | grep project | sed 's/.*\/>//g' | sed 's/<!--//g' | sed 's/-->//g' | while read line ; do
                   for x in $line; do
                     for choice in ${LUNCH_MENU_CHOICES[@]}; do
-                        if [[ $choice == *$x* ]] && [[ $choice == vanir_* ]]; then
+                        if [[ $choice == *$x* ]] && [[ $choice == moonlight_* ]]; then
                             lunch $choice && echo "RE-LUNCHED $choice"&& break
                         fi
                     done

@@ -97,19 +97,19 @@ else
   endif
 endif
 
-# USE_BINARY_FLAGS is set in $(BUILD_SYSTEM)/vanir_config.mk.
+# USE_BINARY_FLAGS is set in $(BUILD_SYSTEM)/moonlight_config.mk.
 # To be used used as a way to test global build flags persistently.
 ifndef LOCAL_IS_HOST_MODULE
   ifdef ($(USE_BINARY_FLAGS),true)
-    LOCAL_CFLAGS += $(call cc-option,$(VANIR_BINARY_CFLAG_OPTIONS))
-    LOCAL_CPPFLAGS += $(call cc-option,$(VANIR_BINARY_CPP_OPTIONS))
-    LOCAL_LDFLAGS += $(call cc-option,$(VANIR_LINKER_OPTIONS))
-    LOCAL_ASFLAGS += $(call cc-option,$(VANIR_ASSEMBLER_OPTIONS))
+    LOCAL_CFLAGS += $(call cc-option,$(MOONLIGHT_BINARY_CFLAG_OPTIONS))
+    LOCAL_CPPFLAGS += $(call cc-option,$(MOONLIGHT_BINARY_CPP_OPTIONS))
+    LOCAL_LDFLAGS += $(call cc-option,$(MOONLIGHT_LINKER_OPTIONS))
+    LOCAL_ASFLAGS += $(call cc-option,$(MOONLIGHT_ASSEMBLER_OPTIONS))
   endif
 
   # Workaround issues with fstrict-aliasing until properly fixed.
   ifeq ($(USE_FSTRICT_FLAGS),true)
-    ifeq ($(LOCAL_MODULE),$(filter $(LOCAL_MODULE),$(VANIR_FNO_STRICT_ALIASING_MODULES)))
+    ifeq ($(LOCAL_MODULE),$(filter $(LOCAL_MODULE),$(MOONLIGHT_FNO_STRICT_ALIASING_MODULES)))
       LOCAL_CONLYFLAGS += -Wno-error=strict-aliasing
       LOCAL_CPPFLAGS += -Wno-error=strict-aliasing
       LOCAL_CFLAGS += -Wno-error=strict-aliasing

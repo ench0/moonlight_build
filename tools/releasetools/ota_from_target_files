@@ -578,7 +578,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   script.ShowProgress(0.5, 0)
 
-  #says: VANIR
+  #says: MOONLIGHT
   script.Print(" ")
   script.Print(" ")
   script.Print(" ")
@@ -600,8 +600,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("t ;##D.    L##, ..         G#E E#t DWi   ,KK: ")
   script.Print("  ,,,      .,,              fE ,;.            ")
   script.Print("                             ,                ")
-  script.Print("  Vanir - LoLLipop 5.0 ")
-  script.Print("    by Team Vanir")
+  script.Print("  MoonLight - LoLLipop 5.0 ")
+  script.Print("    by Team MoonLight")
   script.Print(" ")
 
   if block_based:
@@ -700,10 +700,10 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
 
-  vanirinitlinks = []
-  vanirinitlinks.append(("/init.vanir.rc", "/init.cm.rc"))
-  vanirinitlinks.append(("/init.vanir.rc", "/system/etc/init.local.rc"))
-  script.MakeSymlinks(vanirinitlinks)
+  moonlightinitlinks = []
+  moonlightinitlinks.append(("/init.moonlight.rc", "/init.cm.rc"))
+  moonlightinitlinks.append(("/init.moonlight.rc", "/system/etc/init.local.rc"))
+  script.MakeSymlinks(moonlightinitlinks)
 
   device_specific.FullOTA_PostValidate()
 

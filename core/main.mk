@@ -1081,7 +1081,7 @@ burst:
 surgical:
 	@rm -rf $(OUT_DIR)/target/product/*/obj/
 	@rm -rf $(OUT_DIR)/target/product/*/symbols/
-	@rm -rf $(OUT_DIR)/target/product/*/vanir_*-ota-eng.$(USER).zip
+	@rm -rf $(OUT_DIR)/target/product/*/moonlight_*-ota-eng.$(USER).zip
 	@rm -rf $(OUT_DIR)/target/product/*/system.img
 	@rm -rf $(OUT_DIR)/target/product/*/userdata.img
 	@echo -e ${CL_GRN}"Surgical Strike Completed."${CL_RST}
@@ -1089,7 +1089,7 @@ surgical:
 # This is designed for building on SSD but to whittle away at the bulk file size - DHO
 .PHONY: biopsy
 biopsy:
-	@rm -rf $(OUT_DIR)/target/product/*/vanir_*-ota-eng.dho.zip
+	@rm -rf $(OUT_DIR)/target/product/*/moonlight_*-ota-eng.dho.zip
 	@rm -rf $(OUT_DIR)/target/product/*/system.img
 	@rm -rf $(OUT_DIR)/target/product/*/userdata.img
 	@rm -rf $(OUT_DIR)/target/product/*/system/app/*

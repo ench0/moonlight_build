@@ -223,8 +223,8 @@ ifeq ($(TARGET_CPU_ABI),)
 endif
 TARGET_CPU_ABI2 := $(strip $(TARGET_CPU_ABI2))
 
-# Include vanir variables
-include $(BUILD_SYSTEM)/vanir_config.mk
+# Include moonlight variables
+include $(BUILD_SYSTEM)/moonlight_config.mk
 
 # $(1): os/arch
 define select-android-config-h
@@ -503,11 +503,11 @@ HOST_RELEASE_CFLAGS += $(COMMON_RELEASE_CFLAGS)
 HOST_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS)
 HOST_RELEASE_CPPFLAGS += $(COMMON_RELEASE_CPPFLAGS)
 
-TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) $(VANIR_GLOBAL_CFLAGS)
-TARGET_RELEASE_CFLAGS += $(COMMON_RELEASE_CFLAGS) $(VANIR_RELEASE_CFLAGS)
+TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) $(MOONLIGHT_GLOBAL_CFLAGS)
+TARGET_RELEASE_CFLAGS += $(COMMON_RELEASE_CFLAGS) $(MOONLIGHT_RELEASE_CFLAGS)
 
-TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) $(VANIR_GLOBAL_CFLAGS)
-TARGET_RELEASE_CPPFLAGS += $(COMMON_RELEASE_CPPFLAGS) $(VANIR_RELEASE_CFLAGS)
+TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) $(MOONLIGHT_GLOBAL_CFLAGS)
+TARGET_RELEASE_CPPFLAGS += $(COMMON_RELEASE_CPPFLAGS) $(MOONLIGHT_RELEASE_CFLAGS)
 
 HOST_GLOBAL_LD_DIRS += -L$(HOST_OUT_INTERMEDIATE_LIBRARIES)
 TARGET_GLOBAL_LD_DIRS += -L$(TARGET_OUT_INTERMEDIATE_LIBRARIES)
@@ -643,7 +643,7 @@ endif
 
 ## We need to be sure the global selinux policies are included
 ## last, to avoid accidental resetting by device configs
-$(eval include vendor/vanir/sepolicy/sepolicy.mk)
+$(eval include vendor/moonlight/sepolicy/sepolicy.mk)
 
 include $(BUILD_SYSTEM)/kernel_config.mk # set meat and potatoes for dumpvar.mk
 
